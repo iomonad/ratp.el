@@ -6,7 +6,7 @@
 ;; Maintainer: Clement Trosa <me@trosa.io>
 ;; Created: ven. janv.  4 15:20:29 2019 (+0100)
 ;; Version: 0.0.1
-;; Package-Requires: ()
+;; Package-Requires: (request.el)
 ;; Last-Updated: ven. janv.  4 15:20:29 2019 (+0100)
 ;;           By: Clement
 ;;     Update #: 0
@@ -45,8 +45,37 @@
 ;;
 ;;; Code:
 
-(defun foo-bar ()
-  (print "hello world"))
+;;
+;; Helpers & Constants
+;;
+
+(defconst ratp:base-url
+  "https://api-ratp.pierre-grimaud.fr/v3/"
+  "API base URL for REST calls.")
+
+;;
+;; Destinations
+;;
+
+;;
+;; Lines
+;;
+
+;;
+;; Missions
+;;
+
+;;
+;; Schedules
+;;
+
+;;
+;; Stations
+;;
+
+;;
+;; Traffic
+;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ratp.el ends here
