@@ -1,4 +1,4 @@
-;;; ratp.el ---
+q;;; ratp.el ---
 ;;
 ;; Filename: ratp.el
 ;; Description: RATP API Client for emacs
@@ -18,7 +18,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;
 ;;; Commentary:
-;;   No comment
+;;   TODO: Write description
 ;;
 ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -45,37 +45,93 @@
 ;;
 ;;; Code:
 
+(require 'request)
+
 ;;
 ;; Helpers & Constants
 ;;
 
 (defconst ratp:base-url
-  "https://api-ratp.pierre-grimaud.fr/v3/"
+  "https://api-ratp.pierre-grimaud.fr/v3"
   "API base URL for REST calls.")
 
 ;;
 ;; Destinations
 ;;
 
+(defun ratp:destination (type ligne)
+  "Retrieve destinations informations"
+  (let* ((res (format "%s/destinations/%s/%s"
+					  ratp:base-url type code)))
+	;; WIP
+	))
+
 ;;
 ;; Lines
 ;;
+
+(defun ratp:lines (type ligne)
+  "Retrieve lines informations."
+  (let* ((res (format "%s/lines/%s/%s"
+					  ratp:base-url type code)))
+	;; WIP
+	))
 
 ;;
 ;; Missions
 ;;
 
+(defun ratp:mission (type ligne)
+  "Retrieve RER's mission informations."
+  (let* ((res (format "%s/mission/rers/%s/%s"
+					  ratp:base-url type code)))
+	;; WIP
+	))
+
 ;;
 ;; Schedules
 ;;
+
+(defun ratp:schedules (type code station way)
+  "Retrieve schedules informations."
+  (let* ((res (format "%s/schedules/%s/%s/%s/%s"
+					  ratp:base-url type code station way)))
+	;; WIP
+	))
 
 ;;
 ;; Stations
 ;;
 
+(defun ratp:station (type code station way)
+  "Retrieve schedules informations."
+  (let* ((res (format "%s/schedules/%s/%s/%s/%s"
+					  ratp:base-url type code station way)))
+	;; WIP
+	))
+
 ;;
 ;; Traffic
 ;;
+
+(defun ratp:traffic (type ligne)
+  "Retrieve traffic status"
+  (let*
+	  ((ressource (format "%s/traffic/%s/%s"
+						  ratp:base-url type ligne))
+	   (thisrequest
+		(request ressource
+				 :params '()
+				 :parser 'json-read
+				 :success (cl-function
+						   (lambda (&key data &allow-other-keys)
+							 (message "I sent: %S" (assoc-default 'args data))))))
+	   (data (request-response-data thisrequest))
+	   (err (request-response-error-thrown thisrequest))
+	   (status (request-response-status-code thisrequest)))
+	(print data)))
+
+(ratp:traffic)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; ratp.el ends here
