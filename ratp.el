@@ -1,4 +1,4 @@
-q;;; ratp.el ---
+;;; ratp.el ---
 ;;
 ;; Filename: ratp.el
 ;; Description: RATP API Client for emacs
@@ -63,7 +63,7 @@ q;;; ratp.el ---
   "Retrieve destinations informations"
   (let* ((res (format "%s/destinations/%s/%s"
 					  ratp:base-url type code)))
-	;; WIP
+	(let ((req (nil )))) 				;FIXME
 	))
 
 ;;
