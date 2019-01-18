@@ -5,11 +5,10 @@
 ;; Author: Clement Trosa <me@trosa.io>
 ;; Maintainer: Clement Trosa <me@trosa.io>
 ;; Created: ven. janv.  4 15:20:29 2019 (+0100)
+;    Updated: 2019/01/18 16:13:54 by iomonad          ###   ########.fr        ;
+;;     Update #: 0
 ;; Version: 0.0.1
 ;; Package-Requires: (request.el)
-;; Last-Updated: ven. janv.  4 15:20:29 2019 (+0100)
-;;           By: Clement
-;;     Update #: 0
 ;; URL: https://github.com/iomonad/ratp.el
 ;; Doc URL: https://github.com/iomonad/ratp.el
 ;; Keywords: ratp client
@@ -62,9 +61,11 @@
 (defun ratp:destination (type ligne)
   "Retrieve destinations informations"
   (let* ((res (format "%s/destinations/%s/%s"
-					  ratp:base-url type code)))
-	(let ((req (nil )))) 				;FIXME
-	))
+					  ratp:base-url type ligne))
+		 (req (request res :parser 'json-read)))
+	(message "Hello")))
+
+(ratp:destination 'metros '12)
 
 ;;
 ;; Lines
@@ -118,17 +119,7 @@
   "Retrieve traffic status"
   (let*
 	  ((ressource (format "%s/traffic/%s/%s"
-						  ratp:base-url type ligne))
-	   (thisrequest
-		(request ressource
-				 :params '()
-				 :parser 'json-read
-				 :success (cl-function
-						   (lambda (&key data &allow-other-keys)
-							 (message "I sent: %S" (assoc-default 'args data))))))
-	   (data (request-response-data thisrequest))
-	   (err (request-response-error-thrown thisrequest))
-	   (status (request-response-status-code thisrequest)))
+						  ratp:base-url type ligne)))
 	(print data)))
 
 (ratp:traffic)
