@@ -1,9 +1,12 @@
 # ratp.el [![HitCount](http://hits.dwyl.io/ratp/ratp.el.svg)](http://hits.dwyl.io/ratp/ratp.el)
 
 <a href="https://github.com/iomonad/ratp.el"><img
-  src="https://raw.githubusercontent.com/iomonad/ratp.el/master/.github/logo.png" alt="Normalize Logo"
+  src="https://raw.githubusercontent.com/iomonad/ratp.el/master/.github/logo.png" alt="RATP Logo"
   width="80" height="80" align="right"></a>
-  
+<a href="https://github.com/iomonad/ratp.el"><img
+  src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Emacs Logo"
+  width="80" height="80" align="right"></a> 
+
   > Real time RATP (Autonomous Operator of Parisian Transports) Emacs REST client.
  
 **Installation**
