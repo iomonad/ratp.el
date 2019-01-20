@@ -4,7 +4,7 @@
   src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Normalize Logo"
   width="80" height="80" align="right"></a>
   
-  > Real time RATP (Autonomous Operator of Parisian Transports) Emacs REST client.
+  > Realtime RATP (Autonomous Operator of Parisian Transports) emacs REST client.
  
 **Installation**
 
@@ -13,8 +13,8 @@
 ```
 ## What does it do?
 
-* Real time schedule.
-* Real time traffic status
+* Realtime schedule.
+* Realtime traffic status
 
 
 (c) 2019 *iomonad* - <iomonad@riseup.net> - Licensed under GPL3
