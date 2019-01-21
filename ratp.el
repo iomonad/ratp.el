@@ -5,7 +5,7 @@
 ;; Author: Clement Trosa <me@trosa.io>
 ;; Maintainer: Clement Trosa <me@trosa.io>
 ;; Created: ven. janv.  4 15:20:29 2019 (+0100)
-;    Updated: 2019/01/20 22:02:48 by iomonad          ###   ########.fr        ;
+;    Updated: 2019/01/21 16:45:12 by iomonad          ###   ########.fr        ;
 ;;     Update #: 0
 ;; Version: 0.0.1
 ;; Package-Requires: (request.el)
@@ -65,7 +65,7 @@
 	(request res
 	  :params '((_format . "json"))
 	  :parser 'json-read
-	  :success (function*
+	  :success (cl-function
 				(lambda (&key data &allow-other-keys)
 				  (let* ((result (assoc-default 'result data))
 						 (dest (assoc-default 'destinations result))
@@ -73,16 +73,16 @@
 						 (retour (assoc-default 'name (cdr dest))))
 					(message "%s %s" alle retour)))))))
 
-;; (request "https://api-ratp.pierre-grimaud.fr/v3/destinations/metros/12"
-;; 	  :parser 'buffer-string
-;; 	  :error
-;; 	  (cl-function (lambda (&key error-thrown &allow-other-keys&rest _)))
-;; 	  :success  (cl-function (lambda (&key data &allow-other-keys)
-;;                 (when data
-;;                   (with-current-buffer (get-buffer-create "*request demo*")
-;;                     (erase-buffer)
-;;                     (insert data)
-;;                     (pop-to-buffer (current-buffer)))))))
+(request "https://api-ratp.pierre-grimaud.fr/v3/destinations/metros/12"
+		 :parser 'json-read
+		 :success (cl-function
+				   (lambda (&key data &allow-other-keys)
+					 (when data
+					   (message (prin1-to-string (nth 1 (car data))))
+					   (let* ((dest (nth 1 (car data)))
+							  (val (nth 1 dest))
+							  (mes (prin1-to-string val)))
+						 (message mes))))))
 
 (ratp:destination 'metros '12)
 
