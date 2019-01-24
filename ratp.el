@@ -5,7 +5,7 @@
 ;; Author: Clement Trosa <me@trosa.io>
 ;; Maintainer: Clement Trosa <me@trosa.io>
 ;; Created: ven. janv.  4 15:20:29 2019 (+0100)
-;    Updated: 2019/01/24 11:33:21 by iomonad          ###   ########.fr        ;
+;    Updated: 2019/01/24 11:36:39 by iomonad          ###   ########.fr        ;
 ;;     Update #: 0
 ;; Version: 0.0.1
 ;; Package-Requires: (request.el)
@@ -76,6 +76,8 @@
 											   alle retour)))
 							 (message mes))))))))
 	(request-response-status-code x)))
+
+(ratp:destination 'metros '12)
 
 ;;
 ;; Lines
