@@ -5,7 +5,7 @@
 ;; Author: Clement Trosa <me@trosa.io>
 ;; Maintainer: Clement Trosa <me@trosa.io>
 ;; Created: ven. janv.  4 15:20:29 2019 (+0100)
-;    Updated: 2019/01/24 11:36:39 by iomonad          ###   ########.fr        ;
+;    Updated: 2019/01/25 14:16:02 by iomonad          ###   ########.fr        ;
 ;;     Update #: 0
 ;; Version: 0.0.1
 ;; Package-Requires: (request.el)
@@ -65,30 +65,41 @@
 		 (x (request
 			 res
 			 :parser 'json-read
-			 :success (cl-function
-					   (lambda (&key data &allow-other-keys)
-						 (when data
-						   (let* ((dest (nth 1 (car data)))
-								  (arr (cdr dest))
-								  (alle (cdr (car (aref arr 0))))
-								  (retour (cdr (car (aref arr 1))))
-								  (mes (format "%s <--> %s"
-											   alle retour)))
-							 (message mes))))))))
+			 :success
+			 (cl-function
+			  (lambda (&key data &allow-other-keys)
+				(when data
+				  (let* ((dest (nth 1 (car data)))
+						 (arr (cdr dest))
+						 (alle (cdr (car (aref arr 0))))
+						 (retour (cdr (car (aref arr 1))))
+						 (mes (format "%s <--> %s"
+									  alle retour)))
+					(message mes))))))))
 	(request-response-status-code x)))
-
-(ratp:destination 'metros '12)
 
 ;;
 ;; Lines
 ;;
 
 (defun ratp:lines (type ligne)
-  "Retrieve lines informations."
+  "Retrieve destinations informations"
   (let* ((res (format "%s/lines/%s/%s"
-					  ratp:base-url type code)))
-	;; WIP
-	))
+					  ratp:base-url type ligne))
+		 (x (request
+			 res
+			 :parser 'json-read
+			 :success
+			 (cl-function
+			  (lambda (&key data &allow-other-keys)
+				(when data
+				  (let* ((dest (aref (cdr (car data)) 0))
+						 (name (cdr (car dest)))
+						 (dir (cdr (nth 2  dest)))
+						 (mes (format "%s: %s"
+									  name dir)))
+					(message mes))))))))
+    (request-response-status-code x)))
 
 ;;
 ;; Missions
