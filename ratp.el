@@ -102,17 +102,6 @@
     (request-response-status-code x)))
 
 ;;
-;; Missions
-;;
-
-(defun ratp:mission (type ligne)
-  "Retrieve RER's mission informations."
-  (let* ((res (format "%s/mission/rers/%s/%s"
-					  ratp:base-url type code)))
-	;; WIP
-	))
-
-;;
 ;; Schedules
 ;;
 
