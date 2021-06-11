@@ -1,4 +1,4 @@
-# ratp.el [![HitCount](http://hits.dwyl.io/ratp/ratp.el.svg)](http://hits.dwyl.io/ratp/ratp.el)
+# ratp.el [![HitCount](http://hits.dwyl.io/ratp/ratp.el.svg)]
 
 <a href="https://github.com/iomonad/ratp.el"><img
   src="https://www.gnu.org/software/emacs/images/emacs.png" alt="Emacs Logo"
